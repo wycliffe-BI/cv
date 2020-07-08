@@ -27,5 +27,10 @@ while True:
 
     # Display the captured frames as if they're a single frame, like in the image .py file
     cv.imshow("frame", grey) #Where 'frame' corresponds to the window heading and grey is the variable w/ matrix to show.
-    if cv.waitKey(1) = ord('q'):
+    if cv.waitKey(1) == ord('q'):
         break
+
+# Out of loop, when all the capture is done, or q is pressed:
+
+cap.release()
+cv.destroyAllWindows()
