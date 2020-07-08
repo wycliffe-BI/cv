@@ -7,6 +7,8 @@
 
 import numpy as np
 import cv2 as cv
+import numpy as np
+from time import sleep
 
 # Make variable of the file captured.
 cap = cv.VideoCapture('vtest.avi')
@@ -24,4 +26,16 @@ while cap.isOpened(): # Ensures that while the video file is playing, do this. A
     # We are changing the matrix in the variable
     gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
     # Now gray variable holds the matrix with all that photo data.
-    print(grey)
+    # print(gray)
+
+    sleep(0.05) # This adds a delay between the frames, change it to perfectly match correct speed
+
+    cv.imshow('frame', gray)
+
+    if cv.waitKey(1) == ord('q'): # Key to use to close the window, ord() changes to ASCII decimal
+        break
+
+cap.release()
+
+# Close all windows when done.
+cv.destroyAllWindows()
