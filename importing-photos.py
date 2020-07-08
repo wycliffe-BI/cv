@@ -17,4 +17,4 @@ k = cv.waitKey(0)  # parameter is how long program should wait for user input (i
 
 if k == ord("s"):
     cv.imwrite("starry_night.png", img)  # This writes the file back to the dir, i.e. it will arrive in .png format in
-    # the directory of this project
+    # the directory of this project ,,,,, WHERE img second arg is the matrix of data.
