@@ -1,4 +1,4 @@
-# This is a testing py file for dealing with videos from a  camera (webcam, etc..) with opencv
+# This is a testing py file for dealing with videos from a camera (webcam, etc..) with opencv
 # Brendan Ind 2020
 # DWTFUL Licence (do what the **** you like)
 
@@ -34,3 +34,7 @@ while True:
 
 cap.release()
 cv.destroyAllWindows()
+
+# We can also access other parts of the incoming capture with:
+# cap.get(cv.CAP_PROP_FRAME_WIDTH) and cap.get(cv.CAP_PROP_FRAME_HEIGHT)
+# cap.set(cv.CAP_PROP_FRAME_WIDTH, 320) to set it.
