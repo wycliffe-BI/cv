@@ -7,7 +7,7 @@
 
 import numpy as np
 import cv2 as cv
-import numpy as np
+# import numpy as np
 from time import sleep
 
 # Make variable of the file captured.

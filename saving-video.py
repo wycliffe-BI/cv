@@ -15,21 +15,31 @@ import numpy as np
 cap = cv.VideoCapture(0)
 
 # Define the codec and create VideoWriter object
-fourcc = cv.VideoWriter_fourcc(*'XVID') # This could also be DIVX
-out = cv.VideoWriter('output.avi', fourcc, 20.0, (640,480)) # This is in the order VideoWriter(filename,
+fourcc = cv.VideoWriter_fourcc(*'XVID')  # This could also be DIVX
+out = cv.VideoWriter('output.avi', fourcc, 20.0, (640, 480))  # This is in the order VideoWriter(filename,
 # fourccVariableDefinedAbove, fps, resolutionAsList)
 
+if not cap.isOpened():
+    print("No capture device")
+
 while cap.isOpened():
-    ret, frame = cap.read() # Where cap was defined earlier as the video capture device hardware.
+    ret, frame = cap.read()  # Where cap was defined earlier as the video capture device hardware.
     if not ret:
         print("Couldn't fetch that frame soz")
         break
-    frame = cv.flip(frame, 0) # This is an additional step that literally just mirrors the image and replaces the
+    frame = cv.flip(frame, 0)  # This is an additional step that literally just mirrors the image and replaces the
     # variable with itself, similar to x = x+1 except we a re doing a transformation on the matrix
 
-    out.write(frame, 0) # out is the variable which is the cc video writer object, so we are using that object and
+    # Write out the flipped frame to the fourcc object
+    out.write(frame)  # out is the variable which is the cc video writer object, so we are using that object and
     # giving it an argument (the current frame) and it will string it together each frame
 
-    cv.imshow('frame', )
+    cv.imshow('frame', frame)  # Where we then show the frame variable
 
-    print("hello")
+    if cv.waitKey(1) == ord("q"):
+        break
+
+# Release everything outside of loop when the file is complete
+cap.release()
+out.release()  # Where out is the videoWriter object containing all the stitched frames
+cv.destroyAllWindows()
