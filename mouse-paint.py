@@ -20,7 +20,7 @@ def showEvents():
 # Code draws circle when double click:
 
 # Mouse callback function
-def draw_circle(event, x, y, flags, param):
+def mouseCallback(event, x, y, flags, param):
     if event == cv.EVENT_LBUTTONDBLCLK:
         cv.circle(img, (x, y), 100, (255, 0, 0), -1)  # Create circle from mse xy points w/ r=100, green colour, pen=-1
 
@@ -31,7 +31,7 @@ img = np.zeros((512, 512, 3), np.uint8)  # Now img is a variable holding a greyi
 # create normal window stuff
 cv.namedWindow("image")  # We must name this window same as the one at the bottom in order for them to
 # be the same window, otherwise we would have two windows, one displaying and other asking for mouse input.
-cv.setMouseCallback('image', draw_circle)
+cv.setMouseCallback('image', mouseCallback)
 
 # The setMouseCallback('window', function) is essentially like saying, in 'window' window, when there's ANY mouse action
 # (be it double, single, click, etc..) then we will run the function
@@ -39,12 +39,11 @@ cv.setMouseCallback('image', draw_circle)
 # object of that function, like hey, there's been a mouse event, so program can you go run this function ere.
 # We can then see in that circle function, we have particular parameters that the setMouseCallback gives us,
 # so it automatically fills in the event, x, y, flags and param stuff. We might not need to use all of the information
-# That the mouseCallback has given us, for example in the above example we only use the event, x and y, but its nice
+# That the setMouseCallback has given us, for example in the above example we only use the event, x and y, but its nice
 # to know that we could also use flags, param, etc... (not sure what they nominally output but could find in docs).
 
-# So now, our draw_circle() uses if statement to question weather the 'event' it received as a parameter from the
+# So now, mouseCallback() uses if statement to question weather the 'event' it received as a parameter from the
 # mouseCallback() matches the one we are looking for (in this case its cv.EVENT_LBUTTONDBLCLK), then we act accordingly.
-
 
 while True:
     cv.imshow('image', img)  # Where image is the window title (must be same as the title for cv.namedWindow() above
