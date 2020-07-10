@@ -2,6 +2,8 @@
   <dictionary name="brend">
     <words>
       <w>imwrite</w>
+      <w>trackbar</w>
+      <w>trackbars</w>
     </words>
   </dictionary>
 </component>
