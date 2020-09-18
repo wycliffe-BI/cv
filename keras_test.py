@@ -5,6 +5,7 @@ from keras import load_model
 import numpy as np
 import cv2
 
+
 model = load_model(path)  # Open saved model from the path that the project is in.
 
 
