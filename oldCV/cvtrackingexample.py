@@ -11,7 +11,7 @@ if __name__ == '__main__' :
     
  
     tracker_types = ['BOOSTING', 'MIL','KCF', 'TLD', 'MEDIANFLOW', 'GOTURN', 'MOSSE', 'CSRT']
-    tracker_type = tracker_types[211:40 2020/01/30]
+    tracker_type = tracker_types[1]
  
     ##if int(minor_ver) < 3:
     ##    tracker = cv2.Tracker_create(tracker_type)
