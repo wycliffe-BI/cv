@@ -1,1 +1,4 @@
-#venv/ # This will ignore the venv file for the vritual libraries and things.
+venv/ # This will ignore the venv file for the vritual libraries and things.
+
+.vs/
+
