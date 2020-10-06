@@ -17,13 +17,26 @@ def createTrackbar(label, frameName, min, max, changeFunction=nothing):
     print("Creating trackbar "+ label)
     cv2.createTrackbar(label, frameName, min, max, changeFunction)
 
+def sliderPos(name, frame):
+    return cv2.getTrackbarPos(name, frame)
+
 def createTracker():
     print("Creating tracker")
     return cv2.trackerTLD_create()
 
+def bgr_to_hsv(frame):
+    return cv2.cvtColor(frame, cv2.COLOR_BGR)
 
+def bitwiseCombine(frame, mask):
+    """
+    combines the current frame (arg1) with another mask
+    frame (arg2) to combine them together and
+    returns the new frame, which you should save as a
+    variable e.g. res frame.
+    """
+    return cv2.bitwise_and(frame, frame, mask)
 
-class image
+##class image
 
 def __main__():
     print("Main running")
@@ -34,4 +47,5 @@ def __main__():
     print("ROIunselected="+ROIunselected)
     print("Entering mainloop")
     while (1):
-        #take each frame
+        # Take each frame
+        _, frame = cap.read()
