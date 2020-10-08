@@ -16,11 +16,8 @@ from azure.cognitiveservices.vision.face import FaceClient
 from msrest.authentication import CognitiveServicesCredentials
 from azure.cognitiveservices.vision.face.models import TrainingStatusType, Person, SnapshotObjectType, OperationStatusType
 
-key = "6237dbe519cc486096c4bb6963a5ab84"
-endpoint = "https://brendanind-face-detection.cognitiveservices.azure.com"
-
-KEY = os.environ[key]
-ENDPOINT = os.environ[endpoint]
+KEY = os.environ['FACE_SUBSCRIPTION_KEY']
+ENDPOINT = os.environ['FACE_ENDPOINT']
 
 # Create an authenticated FaceClient.
 face_client = FaceClient(ENDPOINT, CognitiveServicesCredentials(KEY))
