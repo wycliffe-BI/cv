@@ -10,6 +10,10 @@ import numpy as np
 # img is essentially a big matrix, woooow
 img = cv.imread("starry_night.jpg")
 
+
+img2 = cv.imread("starry4.jpg")
+
+
 if img is None:  # i.e. no image
     sys.exit("Couldn't read the image")
 
@@ -23,10 +27,10 @@ if img is None:  # i.e. no image
 
 
 def similarity(img1, img2):
-    err = np.sum((img1.astype("float)") - img2.astype("float")) ** 2)
+    err = np.sum((img1.astype("float") - img2.astype("float")) ** 2)
     err /= float(img1.shape[0] * img1.shape[1])
 
     return err
 
 
-print(similarity(img, img))
+print(similarity(img, img2))
