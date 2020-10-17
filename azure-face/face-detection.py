@@ -45,7 +45,7 @@ class Photo:
 
             ## Get object with all the faces in it
             detected_faces = face_client.face.detect_with_url(url=self.location, return_face_attributes=self.attributes)
-            if not detected_faces: # None found, returns False:
+            if not detected_faces:  # None found, returns False:
                 raise Exception("Cannot find any faces in the photo!")
 
             ## Print results to console
@@ -54,24 +54,28 @@ class Photo:
 
             ## Return that object back to the main section
             return detected_faces
+
         else:  ##I.e. local images.
             print("Local file, not done yet")
             ## TODO: Get local files done!
 
-class Face:
-    def __init__(self, singleFace, tag, emotionsList, coords):
-        self.singleFace = singleFace
-        self.tag = tag
-        self.emotionsList = emotionsList
-        self.coords = coords
 
-    def emotionValue(self, emotion="none"):
-        if emotion == "none":
+class Face:
+    def __init__(self, faceObject, which_face):  ## which_face is a variable that's set so we know what face in the
+        ## Object is the one we are focusing on.
+        self.singleFace = faceObject[which_face]
+        self.emotions = faceObject[which_face].face_attributes.emotion
+        self.gender = faceObject[which_face].face_attributes.gender
+        self.age = faceObject[which_face].face_attributes.age
+        self.makeup = faceObject[which_face].face_attributes.makeup
+
+    def emotion(self, emotion_to_get="none"):
+        if emotion_to_get == "none":
             print("Didn't get the arg I wanted to return an emotion")
-        emotions = self.singleFace.face_attributes
         print("These are the emotions it returned from that face:")
-        print(emotions)
+        print(self.emotions)
         ## TODO: parse the emotions object to return required emotion.
+
 
 class Box:
     def __init__(self, image, face):
@@ -91,7 +95,6 @@ class Box:
         return info
 
     def draw(self, info, img):
-
         ## Record that onto the photo:
         draw = ImageDraw.Draw(img)
         draw.rectangle(info, oultine="red")
@@ -99,32 +102,67 @@ class Box:
         return img
 
 
+def mult1000(data):
+    for i in range(0, len(data)):
+        ## print("i is " +str(i))
+        number = int(data[i])
+        data[i] = number*1000
+    return data
 
+
+def div1000(data):
+    for i in data:
+        number = float(data[i])
+        data[i] = number/float(1000)
+    return data
+
+
+def bubbleSort(data):
+    sorted_yet = False
+    while not sorted_yet:
+        sorted_yet = True
+        for i in range(0, len(data)-1):
+            print("bbsrt i is: "+ str(i))
+            if (data[i + 1] > data[i]):  ## I.e. we need to move it.
+                sorted_yet = False
+                temp = data[i]
+                data[i] = data[i + 1]
+                data[i + 1] = temp
+    print("bbsrt Return: " + str(data))
+    return data
 
 
 ## START OF ACTUAL CODE
-
-faceAttributes = ["emotion"]
 
 ## Set the keys for accessing azure cloud applications, set these on CONTROL PANEL on local machine, see readme for more.
 ## TODO: Add to the readme to explain how the tokens work and global variables and stuff.
 KEY = os.environ['FACE_SUBSCRIPTION_KEY']
 ENDPOINT = os.environ['FACE_ENDPOINT']
 
-# Create an authenticated FaceClient.
+## Create an authenticated FaceClient.
 face_client = FaceClient(ENDPOINT, CognitiveServicesCredentials(KEY))
 
+## Create relevant variables:
 face_url = 'https://upload.wikimedia.org/wikipedia/commons/5/55/Dalailama1_20121014_4639.jpg'
+faceAttributes = ["emotion"]
 
-dictionaryOfFaces = detectFace(face_client, face_url, faceAttributes)
+photo = Photo(face_url, True, face_client, faceAttributes)
 
-face_img = downloadPhoto(face_url)
+print(photo)
 
-img = drawRect(face_img, dictionaryOfFaces)
+faceObject = photo.faces()
 
-img.show()
+faces_in_photo = len(faceObject)
 
-for face in dictionaryOfFaces:
-    emotionObject = face.face_attributes.emotion
-    print(face)
-    print(emotionObject)
+face = Face(faceObject, 0)
+
+print(face.emotions)
+
+emotionsList = face.emotions
+
+dict1 = {"thing1":0.344, "thing2":0.543, "thing3":2,"thing4":454, "thing5":0.452, "thing6":3.54434, "thing7":4.352}
+
+for i, j in dict1.items():
+    print(j)
+
+##img.show()
