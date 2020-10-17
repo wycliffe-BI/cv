@@ -106,23 +106,34 @@ def mult1000(data):
     for i in range(0, len(data)):
         ## print("i is " +str(i))
         number = int(data[i])
-        data[i] = number*1000
+        data[i] = number * 1000
     return data
 
 
 def div1000(data):
     for i in data:
         number = float(data[i])
-        data[i] = number/float(1000)
+        data[i] = number / float(1000)
     return data
+
+
+def parseDictToList(dictionary):
+    listOfLists = []
+    for i in dictionary:
+        key = i
+        value = dictionary[i]
+        print(key, value)
+        pairList = [key, value]
+        listOfLists.append(pairList)
+    return listOfLists
 
 
 def bubbleSort(data):
     sorted_yet = False
     while not sorted_yet:
         sorted_yet = True
-        for i in range(0, len(data)-1):
-            print("bbsrt i is: "+ str(i))
+        for i in range(0, len(data) - 1):
+            print("bbsrt i is: " + str(i))
             if (data[i + 1] > data[i]):  ## I.e. we need to move it.
                 sorted_yet = False
                 temp = data[i]
@@ -160,7 +171,8 @@ print(face.emotions)
 
 emotionsList = face.emotions
 
-dict1 = {"thing1":0.344, "thing2":0.543, "thing3":2,"thing4":454, "thing5":0.452, "thing6":3.54434, "thing7":4.352}
+dict1 = {"thing1": 0.344, "thing2": 0.543, "thing3": 2, "thing4": 454, "thing5": 0.452, "thing6": 3.54434,
+         "thing7": 4.352}
 
 for i, j in dict1.items():
     print(j)
